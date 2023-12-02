@@ -1,0 +1,15 @@
+apiVersion: platform.confluent.io/v1beta1
+kind: Kafka
+metadata:
+  name: kafka
+  namespace: confluent
+spec:
+  dependencies:
+    kRaftController:
+      clusterRef:
+        name: kraftcontroller
+  dataVolumeCapacity: 10G
+  image:
+    application: docker.io/confluentinc/cp-server:{{.Values.cpServer.version}}
+    init: confluentinc/confluent-init-container:{{.Values.confluentInitContainer.version}}
+  replicas: 3

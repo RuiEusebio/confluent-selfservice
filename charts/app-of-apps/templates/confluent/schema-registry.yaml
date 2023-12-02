@@ -1,0 +1,32 @@
+{{ if .Values.schemaRegistry.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: schema-registry
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+  labels:
+    app: "schema-registry"
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: confluent
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: ./charts/confluent/schema-registry
+    repoURL: https://github.com/RuiEusebio/confluent-selfservice.git
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - ./values.yaml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+{{ end }}      

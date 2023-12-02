@@ -3,3 +3,12 @@ sealedSecrets:
 
 confluentForKubernetes:
   enabled: true 
+
+kafka:
+  enabled: true 
+
+controlcenter:
+  enabled: true 
+
+schemaRegistry:
+  enabled: true

@@ -2,7 +2,7 @@ apiVersion: v2
 name: confluent-for-kubernetes
 version: 1.0.0
 appVersion: 1.0.0
-description: A Helm chart for deploying argocd.
+description: A Helm chart for deploying confluent for kubernetes.
 dependencies:
 - name: confluent-for-kubernetes
   version: 0.824.33
