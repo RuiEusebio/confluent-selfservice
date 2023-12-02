@@ -1,2 +1,5 @@
 sealedSecrets:
   enabled: true
+
+confluentForKubernetes:
+  enabled: true 

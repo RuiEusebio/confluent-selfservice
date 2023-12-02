@@ -1,0 +1,2 @@
+confluent-for-kubernetes:
+  kRaftEnabled: true

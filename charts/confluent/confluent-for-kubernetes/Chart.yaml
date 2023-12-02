@@ -1,0 +1,9 @@
+apiVersion: v2
+name: confluent-for-kubernetes
+version: 1.0.0
+appVersion: 1.0.0
+description: A Helm chart for deploying argocd.
+dependencies:
+- name: confluent-for-kubernetes
+  version: 0.824.33
+  repository: https://packages.confluent.io/helm
