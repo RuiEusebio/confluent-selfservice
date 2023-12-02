@@ -10,6 +10,6 @@ spec:
         name: kraftcontroller
   dataVolumeCapacity: 10G
   image:
-    application: docker.io/confluentinc/cp-server:{{.Values.cpServer.version}}
-    init: confluentinc/confluent-init-container:{{.Values.confluentInitContainer.version}}
+    application: {{print "docker.io/confluentinc/cp-server:" .Values.cpServer.version}}
+    init: {{print "confluentinc/confluent-init-container:" .Values.confluentInitContainer.version}}
   replicas: 3

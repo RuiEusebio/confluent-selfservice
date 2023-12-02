@@ -6,5 +6,5 @@ metadata:
 spec:
   replicas: 3
   image:
-    application: confluentinc/cp-schema-registry:{{.Values.cpServer.version}}
-    init: confluentinc/confluent-init-container:{{.Values.confluentInitContainer.version}}
+    application: {{print "confluentinc/cp-schema-registry:" .Values.cpServer.version}}
+    init: {{print "confluentinc/confluent-init-container:" .Values.confluentInitContainer.version}}

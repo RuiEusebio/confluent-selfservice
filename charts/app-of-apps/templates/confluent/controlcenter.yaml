@@ -5,7 +5,7 @@ metadata:
   name: controlcenter
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "4"
   labels:
     app: "controlcenter"
   finalizers:

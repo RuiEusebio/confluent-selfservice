@@ -5,7 +5,7 @@ metadata:
   name: schema-registry
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "3"
   labels:
     app: "schema-registry"
   finalizers:

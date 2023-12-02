@@ -12,5 +12,5 @@ install-app-of-apps:
 
 setup: create-local-cluster install-argocd
 
-clean:
+clear:
 	kind delete clusters local-kubernetes
