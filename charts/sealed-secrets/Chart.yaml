@@ -1,0 +1,8 @@
+description: A Helm chart for deploying sealed-secrets.
+name: sealed-secrets
+version: 1.0.0
+apiVersion: v2
+dependencies:
+- name: sealed-secrets
+  version: 2.13.2
+  repository: https://bitnami-labs.github.io/sealed-secrets
