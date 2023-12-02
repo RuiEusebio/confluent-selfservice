@@ -7,6 +7,8 @@ argo-cd:
 
   configs:
     secret:
+      # user: admin
+      # password: password
       argocdServerAdminPassword: $2a$10$CAF82t.Bs.C030HGplOLZebyppdkBGliti03ZAKqmJJTh3Mf95cBq
 
     cm:
