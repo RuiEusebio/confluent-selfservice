@@ -29,7 +29,6 @@ channels:
           cleanup.policy: "delete"
         x-api-subscribers:
           - testadmin
-          - devuser
         bindingVersion: 0.4.0
     subscribe:
       summary: This operation provides events about changes of published AsyncAPIs
