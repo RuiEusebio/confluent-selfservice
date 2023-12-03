@@ -14,3 +14,16 @@ spec:
   clusterIP: None
   selector:
     app: ldap
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodeport-service
+spec:
+  type: NodePort
+  selector:
+    app: ldap
+  ports:
+    - port: 389
+      targetPort: 389
+      nodePort: 30389
