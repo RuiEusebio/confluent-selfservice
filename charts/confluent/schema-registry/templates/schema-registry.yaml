@@ -8,6 +8,9 @@ spec:
   image:
     application: {{print "confluentinc/cp-schema-registry:" .Values.cpServer.version}}
     init: {{print "confluentinc/confluent-init-container:" .Values.confluentInitContainer.version}}
+  tls:
+    enabled: false
+    secretRef: tls-group1
   authorization:
     type: rbac
   dependencies:
@@ -18,7 +21,7 @@ spec:
         jaasConfig:
           secretRef: credential
       tls:
-        enabled: false
+        enabled: true
     mds:
       endpoint: https://kafka.confluent.svc.cluster.local:8090
       tokenKeyPair:
@@ -28,4 +31,4 @@ spec:
         bearer:
           secretRef: mds-client
       tls:
-        enabled: false    
+        enabled: true
