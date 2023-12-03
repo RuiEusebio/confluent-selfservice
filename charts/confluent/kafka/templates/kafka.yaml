@@ -4,14 +4,14 @@ metadata:
   name: kafka
   namespace: confluent
 spec:
-  # listeners:
-    # internal:
-    #   authentication:
-    #     type: ldap
-    #     jaasConfig:
-    #       secretRef: credential
-    #   tls:
-    #     enabled: false
+  listeners:
+    internal:
+      authentication:
+        type: ldap
+        jaasConfig:
+          secretRef: plain
+      tls:
+        enabled: false
     # external:
     #   externalAccess:
     #     type: nodePort
