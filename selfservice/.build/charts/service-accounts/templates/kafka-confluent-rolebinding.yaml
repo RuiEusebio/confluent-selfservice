@@ -1,0 +1,31 @@
+{{- range $path, $_ := .Files.Glob "sa-link/**.yaml" }}
+{{- $v := $.Files.Get $path | fromYaml }}
+{{- if $v.enabled }}
+apiVersion: platform.confluent.io/v1beta1
+kind: ConfluentRolebinding
+metadata:
+  labels:
+    app.kubernetes.io/name: mep-service-accounts
+  name: sa-kafka-resourceowner-{{$v.name}}
+  namespace: confluent
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"  
+spec:
+  clustersScopeByIds: {}
+  kafkaRestClassRef:
+    name: default
+  principal:
+    name: {{$v.name}}
+    type: user
+  resourcePatterns:
+  - name: {{$v.name}}.
+    patternType: PREFIXED
+    resourceType: Group
+  - name: {{$v.name}}.
+    patternType: PREFIXED
+    resourceType: Topic
+  role: ResourceOwner
+---
+{{- end }}
+{{- end }}
+

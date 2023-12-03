@@ -1,0 +1,51 @@
+{{$releaseService:= .Release.Service}}
+{{$releaseName:= .Release.Name}}
+{{$appVersion:= .Chart.AppVersion}}
+{{$appName:= .Chart.Name}}
+{{- range $path, $_ := .Files.Glob "sa-link/**.yaml" }}
+{{- $v := $.Files.Get $path | fromYaml }}
+{{- if not $v.enabled }}
+{{$checksum:= toJson $v | adler32sum }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "del-ldapuser-job-{{$v.name}}-{{$checksum}}"
+  namespace: confluent
+  labels:
+    app.kubernetes.io/managed-by: {{$v.name}}-sealedsecret
+    app.kubernetes.io/instance: {{ $releaseName | quote }}
+    app.kubernetes.io/version: {{ $appVersion }}
+    helm.sh/chart: "{{ $appName }}-{{ $appVersion }}"
+  annotations:
+    batch.kubernetes.io/job-tracking: ''
+    argocd.argoproj.io/sync-wave: "4"
+spec:
+  backoffLimit: 1
+  template:
+    metadata:
+      name: "ldap-delete-job-{{$v.name}}"
+      labels:
+        app.kubernetes.io/managed-by: {{$v.name}}-sealedsecret
+        app.kubernetes.io/instance: {{ $releaseName | quote }}
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: ldapmng-job
+          image: "ruieusebio/ldapmng:1.0.12"
+          args: ["cn", "delete", "--name", "{{ $v.name }}"]
+          env:
+          - name: LDAP_HOST
+            value: ldap.ldap-system.svc.cluster.local
+          - name: LDAP_PORT
+            value: "389"               
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsUser: 1000
+            runAsNonRoot: true
+            seccompProfile:
+              type: "RuntimeDefault"
+            capabilities:
+              drop: ["ALL"]
+---              
+{{- end }}
+{{- end }}
