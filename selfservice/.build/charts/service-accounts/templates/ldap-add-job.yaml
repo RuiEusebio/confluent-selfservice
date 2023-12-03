@@ -10,7 +10,7 @@ spec:
         image: osixia/openldap:1.5.0
         command: ["/bin/sh", "-c"]
         args:
-        - ldapadd -x -D "cn=admin,dc=test,dc=com" -w confluentrox < /ldap/add-user.ldif
+        - ldapadd -x -H "ldap://ldap.ldap-system.svc.cluster.local:389" -D "cn=admin,dc=test,dc=com" -w confluentrox < /ldap/add-user.ldif
         volumeMounts:
         - name: ldap-add-config
           mountPath: /ldap
