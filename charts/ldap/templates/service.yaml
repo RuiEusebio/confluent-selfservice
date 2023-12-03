@@ -16,6 +16,5 @@ spec:
     name: ldaps
     targetPort: 636
     nodePort: 30636
-  clusterIP: None
   selector:
     app: ldap
