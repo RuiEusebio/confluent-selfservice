@@ -4,6 +4,7 @@ name: local-kubernetes
 nodes:
 - role: control-plane
 - role: worker
+# The range of valid nodeports ports is 30000-32767
 # ArgoCD 
   extraPortMappings:
   - containerPort: 30080 
@@ -11,14 +12,14 @@ nodes:
     listenAddress: "0.0.0.0"
     protocol: tcp
 # Ldap
-  - containerPort: 30389 
+  - containerPort: 30389
     hostPort: 30389
     listenAddress: "0.0.0.0"
     protocol: tcp
 - role: worker
 # Control Center
   extraPortMappings:
-  - containerPort: 39021 
-    hostPort: 39021
+  - containerPort: 30021
+    hostPort: 30021
     listenAddress: "0.0.0.0"
     protocol: tcp
