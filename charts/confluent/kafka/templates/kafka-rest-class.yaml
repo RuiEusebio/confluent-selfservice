@@ -5,6 +5,7 @@ metadata:
   namespace: confluent
 spec:
   kafkaRest:
+    endpoint: http://kafka.confluent.svc.cluster.local:8090
     authentication:
       type: bearer
       bearer:
