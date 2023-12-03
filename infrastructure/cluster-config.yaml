@@ -12,9 +12,9 @@ nodes:
     protocol: tcp
 # Ldap
   - containerPort: 389 
-    hostPort: 1389
+    hostPort: 30389
     listenAddress: "0.0.0.0"
-    protocol: tcp    
+    protocol: tcp
 - role: worker
 # Control Center
   extraPortMappings:
