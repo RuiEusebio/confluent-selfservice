@@ -1,0 +1,17 @@
+{
+  "name": "AsyncApiChanged",
+  "type": "record",
+  "namespace": "apidays.apichanged.v1",
+  "fields": [
+    {
+      "name": "title",
+      "type": "string",
+      "doc": "The title summarizing the change to the API."
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "doc": "A detailed description text of the changes to the API including e.g. a change description, reason, deadlines, minor version etc."
+    }
+  ]
+}

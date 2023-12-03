@@ -1,0 +1,67 @@
+asyncapi: 2.6.0
+info:
+  title: Api days Catalog
+  description: |
+    Asynchronous API of the Api Days. It provides channels with information about async api on, which can be used 
+    for notification or integration purposes.
+  contact:
+    name: Rui
+    url: https://github.com/RuiEusebio
+    email: my.contact@gmail.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 2.0.1
+
+defaultContentType: application/vnd.confluent.avro
+
+x-mep-api-subscribers:
+  - api
+  - sa
+
+channels:
+  apidays:
+    description: |
+      Every time the sources of a published async api changes, an event with change details is sent to this channel.
+      It contains a title and a description of the change.
+    bindings:
+      kafka:    
+        topic: apidays.apichanged.v1
+        partitions: 3
+        replicas: 2
+        topicConfiguration:
+          cleanup.policy: "delete"
+        groupId:
+          type: string
+          enum: ['apidays-consumers']
+        clientId:
+          type: string
+          enum: ['serviceA', "serviceB"]      
+        bindingVersion: 0.4.0
+    subscribe:
+      summary: This operation provides events about changes of published AsyncAPIs
+      description: |
+        Every time the sources of a published async api changes, an event with change details is sent to this channel.
+        The event contains a title and a description of the change. It can also contain detailed change information which
+        describe the resources that have been changed, like schema, topic or api in general. It also contains a list of
+        tags to categorize the change
+      operationId: asyncApiChanged
+      message:
+        name: asyncApiChanged
+        title: AsyncAPI Changed
+        summary: This message contains details about the applied changes of published AsyncAPI
+        contentType: application/vnd.confluent.avro
+        schemaFormat: application/vnd.apache.avro+json;version=1.9.0
+        bindings:
+          kafka:
+            schemaIdLocation: payload
+            schemaIdPayloadEncoding: confluent
+            bindingVersion: 0.4.0
+        payload:
+          $ref: ../schemas/asyncapi-changed.avsc
+        examples:
+          - summary: Message example for a new API
+            headers:
+              $ref: ../examples/header.json
+            payload:
+              $ref: ../examples/payload.json

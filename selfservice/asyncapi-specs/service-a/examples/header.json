@@ -1,0 +1,6 @@
+{
+    "ce_specversion": "1.0",
+    "ce_id": "5de0e154-00ee-437b-9a2c-c955a95737ea",
+    "ce_partitionkey": "60d662c0-9352-4de3-9efa-c76fc5cf0023",
+    "content-type": "application/vnd.confluent.avro"
+}

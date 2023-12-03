@@ -1,0 +1,21 @@
+{{- range $path, $_ := .Files.Glob "specs-link/**/specs/**.yaml" }}
+{{- $v := $.Files.Get $path | fromYaml }}
+{{- range $channel := $v.channels }}
+apiVersion: platform.confluent.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: {{$channel.bindings.kafka.topic}}
+  namespace: confluent
+spec:
+  partitionCount: {{$channel.bindings.kafka.partitions}}
+  replicas: {{$channel.bindings.kafka.replicas}}
+  configs:
+    {{- $channel.bindings.kafka.topicConfiguration | toYaml | nindent 4 }}
+  kafkaRest:
+    authentication:
+      bearer:
+        secretRef: mds-client
+      type: bearer
+---
+{{- end }}
+{{- end }}

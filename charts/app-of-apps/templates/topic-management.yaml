@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: topic-management
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
+  labels:
+    app: "topic-management"
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: confluent
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: ./selfservice/.build/charts/topic-management
+    repoURL: https://github.com/RuiEusebio/confluent-selfservice.git
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - ./values.yaml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
