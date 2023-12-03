@@ -39,7 +39,7 @@ spec:
           - name: LDAP_HOST
             value: ldap.ldap-system.svc.cluster.local
           - name: LDAP_PORT
-            value: 389
+            value: "389"
           - name: CN_PASSWORD
             valueFrom:
               secretKeyRef:
