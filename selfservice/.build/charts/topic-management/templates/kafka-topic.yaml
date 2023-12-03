@@ -11,8 +11,12 @@ spec:
   replicas: {{$channel.bindings.kafka.replicas}}
   configs:
     {{- $channel.bindings.kafka.topicConfiguration | toYaml | nindent 4 }}
-  kafkaClusterRef:
-    name: default
+  kafkaRest:
+    endpoint: http://kafka.confluent.svc.cluster.local:8090
+    authentication:
+      type: bearer
+      bearer:
+        secretRef: mds-client
 ---
 {{- end }}
 {{- end }}
