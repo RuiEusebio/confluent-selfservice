@@ -7,9 +7,9 @@ spec:
   listeners:
     internal:
       authentication:
-        type: plain
+        type: ldap
         jaasConfig:
-          secretRef: plain
+          secretRef: credential
       tls:
         enabled: false
     # external:
