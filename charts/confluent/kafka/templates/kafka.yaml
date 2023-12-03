@@ -32,8 +32,8 @@ spec:
     mds:
       tls:
         enabled: false
-      # tokenKeyPair:
-      #   secretRef: mds-token
+      tokenKeyPair:
+        secretRef: mds-token
       # externalAccess:
       #   type: nodePort
       #   nodePort:
