@@ -1,0 +1,81 @@
+{{- range $path, $_ := .Files.Glob "specs-link/**/specs/**.yaml" }}
+{{- $v := $.Files.Get $path | fromYaml }}
+{{- range $channel := $v.channels }}
+{{- $subscribers := index $channel.bindings.kafka "x-api-subscribers" -}}
+{{- range $subscriber := $subscribers }}
+apiVersion: platform.confluent.io/v1beta1
+kind: ConfluentRolebinding
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "2" # Review the wave
+  labels:
+    app.kubernetes.io/managed-by: self-service-topic-management
+    app.kubernetes.io/name: self-service-topic-management
+  name: {{$subscriber}}-{{$channel.bindings.kafka.topic}}-consumer
+  namespace: confluent
+spec:
+  clustersScopeByIds: {}
+  kafkaRestClassRef:
+    name: default
+  principal:
+    name: {{$subscriber}}
+    type: user
+  resourcePatterns:
+  - name: {{$channel.bindings.kafka.topic}}
+    patternType: LITERAL
+    resourceType: Topic
+  role: DeveloperRead
+---
+apiVersion: platform.confluent.io/v1beta1
+kind: ConfluentRolebinding
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "2" # Review the wave
+  labels:
+    app.kubernetes.io/managed-by: self-service-topic-management
+    app.kubernetes.io/name: self-service-topic-management
+  name: {{$subscriber}}-{{$channel.bindings.kafka.topic}}-producer
+  namespace: confluent
+spec:
+  clustersScopeByIds: {}
+  kafkaRestClassRef:
+    name: default
+  principal:
+    name: {{$subscriber}}
+    type: user
+  resourcePatterns:
+  - name: {{$channel.bindings.kafka.topic}}
+    patternType: LITERAL
+    resourceType: Topic
+  role: DeveloperWrite
+---
+apiVersion: platform.confluent.io/v1beta1
+kind: ConfluentRolebinding
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "2" # Review the wave
+  labels:
+    app.kubernetes.io/managed-by: self-service-topic-management
+    app.kubernetes.io/name: self-service-topic-management
+  name: {{$subscriber}}-{{$channel.bindings.kafka.topic}}-schemaregistry-consumer
+  namespace: confluent
+spec:
+  clustersScopeByIds:
+    schemaRegistryClusterId: id_schemaregistry_confluent
+  kafkaRestClassRef:
+    name: default
+  principal:
+    name: {{$subscriber}}
+    type: user
+  resourcePatterns:
+  - name: {{$channel.bindings.kafka.topic}}-key
+    patternType: LITERAL
+    resourceType: Subject
+  - name: {{$channel.bindings.kafka.topic}}-value
+    patternType: LITERAL
+    resourceType: Subject
+  role: DeveloperRead
+---
+{{- end }}
+{{- end }}
+{{- end }}

@@ -15,10 +15,6 @@ info:
 
 defaultContentType: application/vnd.confluent.avro
 
-x-mep-api-subscribers:
-  - api
-  - sa
-
 channels:
   apidays:
     description: |
@@ -31,12 +27,8 @@ channels:
         replicas: 2
         topicConfiguration:
           cleanup.policy: "delete"
-        groupId:
-          type: string
-          enum: ['apidays-consumers']
-        clientId:
-          type: string
-          enum: ['serviceA', "serviceB"]      
+        x-api-subscribers:
+          - testadmin
         bindingVersion: 0.4.0
     subscribe:
       summary: This operation provides events about changes of published AsyncAPIs
