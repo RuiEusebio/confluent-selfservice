@@ -58,6 +58,11 @@ spec:
             userObjectClass: organizationalRole
             userSearchBase: dc=test,dc=com
   dependencies:
+    kafkaRest:
+      authentication:
+        type: bearer
+        bearer:
+          secretRef: mds-client
     kRaftController:
       clusterRef:
         name: kraftcontroller
