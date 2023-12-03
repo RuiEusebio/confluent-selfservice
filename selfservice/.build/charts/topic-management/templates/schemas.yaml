@@ -26,5 +26,5 @@ metadata:
   namespace: confluent
 data:
   schema: |
-    {{ $v }}
+    {{ toJson $v }}
 {{ end }}
