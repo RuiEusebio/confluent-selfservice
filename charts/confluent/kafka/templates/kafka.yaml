@@ -7,7 +7,7 @@ spec:
   listeners:
     internal:
       authentication:
-        type: ldap
+        type: plain
         jaasConfig:
           secretRef: credential
       tls:
@@ -42,7 +42,7 @@ spec:
       provider:
         type: ldap
         ldap:
-          address: ldap://ldap.confluent.svc.cluster.local:389
+          address: ldap://ldap.ldap.svc.cluster.local:389
           authentication:
             type: simple
             simple:
