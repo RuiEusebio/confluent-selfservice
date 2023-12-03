@@ -1,5 +1,5 @@
 {
-  "name": "AsyncApiChanged",
+  "name": "APIAsyncApiChanged",
   "type": "record",
   "namespace": "apidaysparis.apichanged.v2",
   "fields": [
