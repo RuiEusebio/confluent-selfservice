@@ -29,8 +29,7 @@ spec:
       labels:
         app.kubernetes.io/managed-by: {{$v.name}}-sealedsecret
         app.kubernetes.io/instance: {{ $releaseName | quote }}
-    spec:
-      serviceAccountName: kafka-service-accounts-sa    
+    spec:   
       restartPolicy: Never
       containers:
         - name: ldapmng-job
