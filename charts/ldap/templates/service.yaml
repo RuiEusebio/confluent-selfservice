@@ -6,13 +6,11 @@ metadata:
     app: ldap
   namespace: {{ .Release.Namespace }}
 spec:
-  type: NodePort
   ports:
   - port: 389
     name: ldap
-    nodePort: 30389
   - port: 636
     name: ldaps
-    nodePort: 30636
+  clusterIP: None
   selector:
     app: ldap
