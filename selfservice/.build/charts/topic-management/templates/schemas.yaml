@@ -27,4 +27,5 @@ metadata:
 data:
   schema: |
     {{ toJson $v }}
+---
 {{ end }}
