@@ -11,11 +11,8 @@ spec:
   replicas: {{$channel.bindings.kafka.replicas}}
   configs:
     {{- $channel.bindings.kafka.topicConfiguration | toYaml | nindent 4 }}
-  kafkaRest:
-    authentication:
-      bearer:
-        secretRef: mds-client
-      type: bearer
+  kafkaClusterRef:
+    name: default
 ---
 {{- end }}
 {{- end }}
