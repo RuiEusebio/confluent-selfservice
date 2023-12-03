@@ -23,7 +23,7 @@ channels:
     bindings:
       kafka:    
         topic: apidaysparis.apichanged.v2
-        partitions: 1
+        partitions: 3
         replicas: 3
         topicConfiguration:
           cleanup.policy: "delete"
