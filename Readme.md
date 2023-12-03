@@ -15,3 +15,6 @@ kubectl create secret generic mds-token --from-file=mdsPublicKey.pem=mds-publick
 
 # Create mds client
 kubectl create secret generic mds-client --from-file=bearer.txt --dry-run=client -o yaml
+
+# Create plain internal secret
+kubectl create secret generic credential --from-file=plain.txt --from-file=plain-users.json --dry-run=client -o yaml

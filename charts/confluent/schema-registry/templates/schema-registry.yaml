@@ -8,3 +8,24 @@ spec:
   image:
     application: {{print "confluentinc/cp-schema-registry:" .Values.cpServer.version}}
     init: {{print "confluentinc/confluent-init-container:" .Values.confluentInitContainer.version}}
+  authorization:
+    type: rbac
+  dependencies:
+    kafka:
+      bootstrapEndpoint: kafka.confluent.svc.cluster.local:9071
+      authentication:
+        type: plain
+        jaasConfig:
+          secretRef: credential
+      tls:
+        enabled: false
+    mds:
+      endpoint: https://kafka.confluent.svc.cluster.local:8090
+      tokenKeyPair:
+        secretRef: mds-token
+      authentication:
+        type: bearer
+        bearer:
+          secretRef: mds-client
+      tls:
+        enabled: false    
