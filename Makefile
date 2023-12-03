@@ -10,6 +10,9 @@ install-argocd:
 install-app-of-apps:
 	helm upgrade --install argocd ./charts/app-of-apps
 
+generate-secret:
+	sh selfservice/.build/scripts/password-generator.sh 30
+	
 setup: create-local-cluster install-argocd
 
 clear:

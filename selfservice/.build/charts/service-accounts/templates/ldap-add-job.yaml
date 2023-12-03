@@ -1,45 +1,60 @@
+{{$releaseService:= .Release.Service}}
+{{$releaseName:= .Release.Name}}
+{{$appVersion:= .Chart.AppVersion}}
+{{$appName:= .Chart.Name}}
+{{- range $path, $_ := .Files.Glob "sa-link/**.yaml" }}
+{{- $v := $.Files.Get $path | fromYaml }}
+{{- if $v.enabled }}
+{{$checksum:= toJson $v | adler32sum }}
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: ldap-add-job
+  name: "set-ldapuser-job-{{$v.name}}-{{$checksum}}"
+  namespace: confluent
+  labels:
+    app.kubernetes.io/managed-by: {{$v.name}}-sealedsecret
+    app.kubernetes.io/instance: {{ $releaseName | quote }}
+    app.kubernetes.io/version: {{ $appVersion }}
+    helm.sh/chart: "{{ $appName }}-{{ $appVersion }}"
+    pod-security.kubernetes.io/enforce: privileged
+  annotations:
+    batch.kubernetes.io/job-tracking: ''
+    argocd.argoproj.io/sync-wave: "3"
 spec:
+  backoffLimit: 2
+  activeDeadlineSeconds: 60
   template:
+    metadata:
+      name: "set-ldapuser-job-{{$v.name}}"
+      labels:
+        app.kubernetes.io/managed-by: {{$v.name}}-sealedsecret
+        app.kubernetes.io/instance: {{ $releaseName | quote }}
     spec:
-      containers:
-      - name: ldap-add-container
-        image: osixia/openldap:1.5.0
-        command: ["/bin/sh", "-c"]
-        args:
-        - ldapadd -x -H "ldap://ldap.ldap-system.svc.cluster.local:389" -D "cn=admin,dc=test,dc=com" -w confluentrox < /ldap/add-user.ldif
-        volumeMounts:
-        - name: ldap-add-config
-          mountPath: /ldap
-        env:
-        - name: LDAP_USER_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: ldap-user-password
-              key: password          
+      serviceAccountName: kafka-service-accounts-sa    
       restartPolicy: Never
-      volumes:
-      - name: ldap-add-config
-        configMap:
-          name: ldap-add-configmap
-  backoffLimit: 4
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: ldap-add-configmap
-data:
-  add-user.ldif: |
-    dn: cn=rui1,dc=test,dc=com
-    objectClass: top
-    objectClass: person
-    objectClass: organizationalPerson
-    objectClass: inetOrgPerson
-    cn: rui1
-    sn: Doe
-    givenName: rui1
-    uid: rui1
-    userPassword: ${LDAP_USER_PASSWORD}
+      containers:
+        - name: ldapmng-job
+          image: "ruieusebio/ldapmng:1.0.11"
+          args: ["cn", "create", "user", "--name", "{{ $v.name }}"]
+          env:
+          # - name: LDAP_PASSWORD
+          #   valueFrom:
+          #     secretKeyRef:
+          #       name: ldap-sealedsecret
+          #       key: password 
+          - name: CN_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ $v.name }}-sealedsecret
+                key: password                    
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsUser: 1000
+            runAsNonRoot: true
+            seccompProfile:
+              type: "RuntimeDefault"
+            capabilities:
+              drop: ["ALL"]
+---              
+{{- end }}
+{{- end }}
