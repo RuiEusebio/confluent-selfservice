@@ -9,6 +9,12 @@ metadata:
   annotations:
     checksum/config: {{ $checksum }}  
 spec:
+  compatibilityLevel: FULL_TRANSITIVE
+  schemaRegistryRest:
+    authentication:
+      type: bearer
+      bearer:
+        secretRef: mds-client
   data:
     configRef: schema-config-{{$v.namespace}}-value
     format: avro
