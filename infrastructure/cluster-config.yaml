@@ -10,4 +10,15 @@ nodes:
     hostPort: 30080
     listenAddress: "0.0.0.0"
     protocol: tcp
+# Ldap
+  - containerPort: 389 
+    hostPort: 1389
+    listenAddress: "0.0.0.0"
+    protocol: tcp    
 - role: worker
+# Control Center
+  extraPortMappings:
+  - containerPort: 9021 
+    hostPort: 9021
+    listenAddress: "0.0.0.0"
+    protocol: tcp
