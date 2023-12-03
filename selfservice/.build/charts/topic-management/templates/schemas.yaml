@@ -1,0 +1,24 @@
+{{- range $path, $_ := .Files.Glob "specs-link/**/schemas/**.avsc" }}
+{{- $v := $.Files.Get $path | fromJson }}
+{{$checksum:= $v | toYaml | sha256sum }}
+apiVersion: platform.confluent.io/v1beta1
+kind: Schema
+metadata:
+  name: {{$v.namespace}}-value
+  namespace: confluent
+  annotations:
+    checksum/config: {{ $checksum }}  
+spec:
+  data:
+    configRef: schema-config-{{$v.namespace}}-value
+    format: avro
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: schema-config-{{$v.namespace}}-value
+  namespace: confluent
+data:
+  schema: |
+    {{ $v }}
+{{ end }}
