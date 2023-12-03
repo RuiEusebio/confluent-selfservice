@@ -24,7 +24,7 @@ channels:
       kafka:    
         topic: apidaysparis.apichanged.v2
         partitions: 3
-        replicas: 3
+        replicas: 2
         topicConfiguration:
           cleanup.policy: "delete"
         x-api-subscribers:
