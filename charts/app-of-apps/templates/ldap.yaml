@@ -1,0 +1,31 @@
+{{ if .Values.ldap.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ldap
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-99"
+  labels:
+    app: "ldap"
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: ldap-system
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: ./charts/ldap
+    repoURL: https://github.com/RuiEusebio/confluent-selfservice.git
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - ./values.yaml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+{{ end }}      

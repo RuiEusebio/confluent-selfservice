@@ -12,3 +12,6 @@ controlcenter:
 
 schemaRegistry:
   enabled: true
+
+ldap:
+  enabled: true
