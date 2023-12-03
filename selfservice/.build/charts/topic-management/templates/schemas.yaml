@@ -14,7 +14,7 @@ spec:
     authentication:
       type: bearer
       bearer:
-        secretRef: credential
+        secretRef: mds-client
   data:
     configRef: schema-config-{{$v.namespace}}-value
     format: avro
