@@ -1,0 +1,6 @@
+name: apidays
+role: ResourceOwner
+quotas: 1mb
+owners:
+  rui.eusebio
+  joao.dias
