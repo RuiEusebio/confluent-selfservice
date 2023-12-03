@@ -33,7 +33,7 @@ spec:
       restartPolicy: Never
       containers:
         - name: ldapmng-job
-          image: "ruieusebio/ldapmng:1.0.11"
+          image: "ruieusebio/ldapmng:1.0.12"
           args: ["cn", "create", "user", "--name", "{{ $v.name }}"]
           env:
           - name: LDAP_HOST
