@@ -22,7 +22,7 @@ channels:
       It contains a title and a description of the change.
     bindings:
       kafka:    
-        topic: apidaysparis.apichanged.v2
+        topic: api.apichanged.v2
         partitions: 3
         replicas: 2
         topicConfiguration:

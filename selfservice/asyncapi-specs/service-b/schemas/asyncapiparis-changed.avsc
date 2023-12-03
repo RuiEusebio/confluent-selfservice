@@ -1,7 +1,7 @@
 {
   "name": "APIAsyncApiChanged",
   "type": "record",
-  "namespace": "apidaysparis.apichanged.v2",
+  "namespace": "api.apichanged.v2",
   "fields": [
     {
       "name": "title",
