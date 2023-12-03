@@ -14,6 +14,12 @@ spec:
         volumeMounts:
         - name: ldap-add-config
           mountPath: /ldap
+        env:
+        - name: LDAP_USER_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: ldap-user-password
+              key: password          
       restartPolicy: Never
       volumes:
       - name: ldap-add-config
@@ -27,13 +33,13 @@ metadata:
   name: ldap-add-configmap
 data:
   add-user.ldif: |
-    dn: cn=rui,dc=test,dc=com
+    dn: cn=rui1,dc=test,dc=com
     objectClass: top
     objectClass: person
     objectClass: organizationalPerson
     objectClass: inetOrgPerson
-    cn: rui
+    cn: rui1
     sn: Doe
-    givenName: John
-    uid: johndoe
-    userPassword: mysecretpassword
+    givenName: rui1
+    uid: rui1
+    userPassword: ${LDAP_USER_PASSWORD}
