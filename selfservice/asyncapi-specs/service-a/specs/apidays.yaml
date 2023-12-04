@@ -30,6 +30,7 @@ channels:
         x-api-subscribers:
           - testadmin
           - apidaysparis
+          - paris
         bindingVersion: 0.4.0
     subscribe:
       summary: This operation provides events about changes of published AsyncAPIs
