@@ -7,6 +7,12 @@
 - make
 - helm
 
+# provision local cluster
+make setup
+
+# claer all
+make clear
+
 # Create ldap secret
 kubectl create secret generic ldap-secret --from-file=ldap.txt --dry-run=client -o yaml
 
