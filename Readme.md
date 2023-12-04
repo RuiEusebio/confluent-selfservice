@@ -7,10 +7,28 @@
 - make
 - helm
 
+# Service Account Template
+
+```yaml
+
+name: change-me
+quotas: 1mb
+password: change-me
+owners:
+  - one
+  - two
+enabled: true
+
+```
+
 # provision local cluster
+
+***The completion of the setup typically requires approximately 10 minutes.***
+<hr/>
+
 make setup
 
-# claer all
+# clear all
 make clear
 
 # Create ldap secret
