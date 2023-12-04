@@ -1,0 +1,12 @@
+{
+  "name": "AsyncApiChangedParis",
+  "type": "record",
+  "namespace": "apidays.paris.apichanged.v2",
+  "fields": [
+    {
+      "name": "title",
+      "type": "string",
+      "doc": "The title summarizing the change to the API."
+    }
+  ]
+}
