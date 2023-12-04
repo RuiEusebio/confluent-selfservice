@@ -28,6 +28,23 @@ owners:
 enabled: true
 ```
 
+# User Interfaces
+### Argocd
+endpoint: http://localhost:30080/
+user: admin
+password: password
+
+### ControlCenter
+endpoint: http://localhost:30021
+user: kafka
+password: kafka-secret
+
+### Ldap
+endpoint: ldap://localhost30389
+user dn: cn=admin,dc=test,dc=com
+base dn: dc=test,dc=com
+password: confluentrox
+
 ## clear all
 make clear
 
