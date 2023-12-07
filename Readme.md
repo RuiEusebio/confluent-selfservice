@@ -7,9 +7,6 @@
 - make
 - helm
 
-### Create encrypted password
-make generate-secret
-
 ## provision local cluster
 
 ***The completion of the setup typically requires approximately 10 minutes.***
@@ -27,6 +24,8 @@ owners:
   - two
 enabled: true
 ```
+### Create encrypted password
+make generate-secret
 
 # User Interfaces
 ### Argocd
@@ -44,7 +43,7 @@ user: kafka
 password: kafka-secret
 
 ### Ldap
-endpoint: ldap://localhost30389
+endpoint: ldap://localhost:30389
 <br/>
 user dn: cn=admin,dc=test,dc=com
 <br/>
