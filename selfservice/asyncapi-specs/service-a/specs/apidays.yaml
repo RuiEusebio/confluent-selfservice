@@ -58,35 +58,35 @@ channels:
             payload:
               $ref: ../examples/payload.json
 
-  # apidays.paris:
-  #   description: |
-  #     Every time the sources of a published async api changes, an event with change details is sent to this channel.
-  #     It contains a title and a description of the change.
-  #   bindings:
-  #     kafka:    
-  #       topic: apidays.paris.demo.v1
-  #       partitions: 3
-  #       replicas: 2
-  #       topicConfiguration:
-  #         cleanup.policy: "delete"
-  #       x-api-subscribers:
-  #         - testadmin
-  #         - paris
-  #       bindingVersion: 0.4.0
-  #   subscribe:
-  #     summary: This operation provides events about changes of published AsyncAPIs
-  #     description: |
-  #       Every time the sources of a published async api changes, an event with change details is sent to this channel.
-  #       The event contains a title and a description of the change. It can also contain detailed change information which
-  #       describe the resources that have been changed, like schema, topic or api in general. It also contains a list of
-  #       tags to categorize the change
-  #     operationId: demo
-  #     message:
-  #       name: demo
-  #       title: AsyncAPI Demo
-  #       summary: This message contains details about the applied changes of published AsyncAPI
-  #       bindings:
-  #         kafka:
-  #           schemaIdLocation: payload
-  #           schemaIdPayloadEncoding: confluent
-  #           bindingVersion: 0.4.0
+  apidays.paris:
+    description: |
+      Every time the sources of a published async api changes, an event with change details is sent to this channel.
+      It contains a title and a description of the change.
+    bindings:
+      kafka:    
+        topic: apidays.paris.demo.v1
+        partitions: 3
+        replicas: 2
+        topicConfiguration:
+          cleanup.policy: "delete"
+        x-api-subscribers:
+          - testadmin
+          - paris
+        bindingVersion: 0.4.0
+    subscribe:
+      summary: This operation provides events about changes of published AsyncAPIs
+      description: |
+        Every time the sources of a published async api changes, an event with change details is sent to this channel.
+        The event contains a title and a description of the change. It can also contain detailed change information which
+        describe the resources that have been changed, like schema, topic or api in general. It also contains a list of
+        tags to categorize the change
+      operationId: demo
+      message:
+        name: demo
+        title: AsyncAPI Demo
+        summary: This message contains details about the applied changes of published AsyncAPI
+        bindings:
+          kafka:
+            schemaIdLocation: payload
+            schemaIdPayloadEncoding: confluent
+            bindingVersion: 0.4.0
