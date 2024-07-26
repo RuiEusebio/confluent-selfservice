@@ -14,18 +14,18 @@ spec:
           secretRef: credential
       tls:
         enabled: false
-    # external:
-    #   externalAccess:
-    #     type: nodePort
-    #     nodePort:
-    #       host: <host>
-    #       nodePortOffset: 30000
-    #   authentication:
-    #     type: ldap
-    #     jaasConfig:
-    #       secretRef: credential
-    #   tls:
-    #     enabled: false
+    external:
+      externalAccess:
+        type: nodePort
+        nodePort:
+          host: confluent.svc.cluster.local
+          nodePortOffset: 30023
+      authentication:
+        type: ldap
+        jaasConfig:
+          secretRef: credential
+      tls:
+        enabled: false
   authorization:
     type: rbac
     superUsers:

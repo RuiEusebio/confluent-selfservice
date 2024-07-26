@@ -17,8 +17,8 @@ nodes:
     listenAddress: "0.0.0.0"
     protocol: tcp
 - role: worker
-# Control Center
   extraPortMappings:
+# Control Center
   - containerPort: 30021
     hostPort: 30021
     listenAddress: "0.0.0.0"
@@ -28,3 +28,8 @@ nodes:
     hostPort: 30022
     listenAddress: "0.0.0.0"
     protocol: tcp    
+# kafka
+  - containerPort: 30023
+    hostPort: 30023
+    listenAddress: "0.0.0.0"
+    protocol: tcp   
