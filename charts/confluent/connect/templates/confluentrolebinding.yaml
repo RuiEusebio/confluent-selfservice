@@ -1,0 +1,22 @@
+apiVersion: platform.confluent.io/v1beta1
+kind: ConfluentRolebinding
+metadata:
+  labels:
+    app.kubernetes.io/managed-by: Terraform
+    app.kubernetes.io/name: connect
+    confluent.mep.kn.int/role: SystemAdmin
+    confluent.mep.kn.int/rolebindingScope: scope
+    confluent.mep.kn.int/scope: connect
+    confluent.mep.kn.int/scopeNamespace: confluent.esb-rabbitmq-bridge-cluster
+  name: connect-confluent-user-connector-deploy-systemadmin
+  namespace: confluent
+spec:
+  clustersScopeByIds:
+    connectClusterId: connect
+  kafkaRestClassRef:
+    name: default
+  principal:
+    name: kafka
+    type: user
+  role: SystemAdmin
+
