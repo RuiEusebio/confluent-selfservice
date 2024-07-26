@@ -42,3 +42,6 @@ spec:
       url: http://schemaregistry.confluent.svc.cluster.local:8081
       tls:
         enabled: false
+    connect:
+      - name: mep-connect-backup-restore
+        url: http://connect.confluent.svc.cluster.local:8083
