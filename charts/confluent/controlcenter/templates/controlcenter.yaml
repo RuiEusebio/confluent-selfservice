@@ -43,5 +43,5 @@ spec:
       tls:
         enabled: false
     connect:
-      - name: mep-connect-backup-restore
+      - name: connect-cluster
         url: http://connect.confluent.svc.cluster.local:8083
