@@ -21,7 +21,7 @@ spec:
           host: confluent.svc.cluster.local
           nodePortOffset: 30023
       authentication:
-        type: ldap
+        type: plain
         jaasConfig:
           secretRef: credential
       tls:

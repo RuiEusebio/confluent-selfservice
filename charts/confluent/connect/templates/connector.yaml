@@ -19,6 +19,6 @@ spec:
     iterations: "10000000"
   connectRest:
     authentication:
+      type: bearer
       bearer:
         secretRef: mds-client
-      type: bearer
