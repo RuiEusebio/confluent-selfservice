@@ -12,7 +12,7 @@ metadata:
   namespace: confluent
 spec:
   clustersScopeByIds:
-    connectClusterId: connect
+    connectClusterId: confluent.connect
   kafkaRestClassRef:
     name: default
   principal:
