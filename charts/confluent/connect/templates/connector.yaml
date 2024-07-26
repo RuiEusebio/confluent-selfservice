@@ -16,3 +16,8 @@ spec:
     value.converter.schemas.enable: "false"
     max.interval: "100"
     iterations: "10000000"
+  connectRest:
+    authentication:
+      bearer:
+        secretRef: mds-client
+      type: bearer
