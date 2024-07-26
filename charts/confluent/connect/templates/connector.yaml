@@ -21,4 +21,4 @@ spec:
     authentication:
       type: bearer
       bearer:
-        secretRef: credential
+        secretRef: mds-client
