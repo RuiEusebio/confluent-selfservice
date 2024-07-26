@@ -16,7 +16,7 @@ spec:
     value.converter: "org.apache.kafka.connect.json.JsonConverter"
     value.converter.schemas.enable: "false"
     max.interval: "100"
-    iterations: "10000000"
+    iterations: "10"
   connectRest:
     authentication:
       type: bearer
