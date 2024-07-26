@@ -23,3 +23,8 @@ nodes:
     hostPort: 30021
     listenAddress: "0.0.0.0"
     protocol: tcp
+# Connect
+  - containerPort: 30022
+    hostPort: 30022
+    listenAddress: "0.0.0.0"
+    protocol: tcp    

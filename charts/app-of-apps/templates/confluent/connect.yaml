@@ -1,0 +1,32 @@
+{{ if .Values.connect.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: connect
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
+  labels:
+    app: "connect"
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: confluent
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: ./charts/confluent/connect
+    repoURL: https://github.com/RuiEusebio/confluent-selfservice.git
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - ./values.yaml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+{{ end }}      

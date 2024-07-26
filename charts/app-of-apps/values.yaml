@@ -15,3 +15,6 @@ schemaRegistry:
 
 ldap:
   enabled: true
+
+connect:
+  enabled: true
