@@ -51,6 +51,16 @@ base dn: dc=test,dc=com
 <br/>
 password: confluentrox
 
+
+### Kafka
+endpoint: localhost:30023
+<br/>
+user: kafka
+<br/>
+password: kafka-secret
+<br/>
+command to test: kcat -L -b localhost:30023 -X security.protocol=SASL_PLAINTEXT -X sasl.mechanisms=PLAIN -X sasl.username="kafka" -X sasl.password="kafka-secret"
+
 ## clear all
 make clear
 
