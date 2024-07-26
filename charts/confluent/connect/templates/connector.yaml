@@ -8,6 +8,7 @@ spec:
   taskMax: 4
   connectClusterRef:
     name: connect
+    namespace: confluent
   configs:
     kafka.topic: "pageviews"
     quickstart: "pageviews"
