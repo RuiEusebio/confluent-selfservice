@@ -15,7 +15,7 @@ spec:
     type: rbac
   dependencies:
     kafka:
-      bootstrapEndpoint: kafka.confluent.svc.cluster.local:9071
+      bootstrapEndpoint: http://kafka.confluent.svc.cluster.local:9071
       authentication:
         type: plain
         jaasConfig:
