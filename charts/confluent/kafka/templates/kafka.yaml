@@ -10,10 +10,7 @@ spec:
     server:
       - confluent.balancer.enable=true
     log4j: 
-      - log4j.rootLogger=ERROR, stdout
-      - log4j.appender.stdout=org.apache.log4j.ConsoleAppender
-      - log4j.appender.stdout.layout=org.apache.log4j.EnhancedPatternLayout
-      - log4j.appender.stdout.layout.ConversionPattern="[%p] %d [%t] %c %M - %m%n"     
+      - log4j.rootLogger=ERROR, stdout  
   listeners:
     internal:
       authentication:
