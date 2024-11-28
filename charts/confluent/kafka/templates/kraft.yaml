@@ -13,11 +13,3 @@ spec:
     application: {{print "docker.io/confluentinc/cp-server:" .Values.cpServer.version}}
     init: {{print "confluentinc/confluent-init-container:" .Values.confluentInitContainer.version}}
   replicas: 3
-  listeners:
-    controller:
-      authentication:
-        jaasConfig:
-          secretRef: credential
-        type: plain
-      tls:
-        enabled: false  
