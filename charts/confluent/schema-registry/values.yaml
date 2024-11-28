@@ -1,5 +1,5 @@
 cpServer:
-  version: 7.5.0
+  version: 7.7.0
 
 confluentInitContainer:
-  version: 2.7.0
+  version: 2.9.0
