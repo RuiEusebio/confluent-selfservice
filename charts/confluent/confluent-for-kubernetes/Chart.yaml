@@ -5,5 +5,5 @@ appVersion: 1.0.0
 description: A Helm chart for deploying confluent for kubernetes.
 dependencies:
 - name: confluent-for-kubernetes
-  version: 0.1033.33
+  version: 0.1033.22
   repository: https://packages.confluent.io/helm
