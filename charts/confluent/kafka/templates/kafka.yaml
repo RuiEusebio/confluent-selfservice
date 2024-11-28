@@ -82,4 +82,4 @@ spec:
   image:
     application: {{print "docker.io/confluentinc/cp-server:" .Values.cpServer.version}}
     init: {{print "confluentinc/confluent-init-container:" .Values.confluentInitContainer.version}}
-  replicas: 4
+  replicas: 3
