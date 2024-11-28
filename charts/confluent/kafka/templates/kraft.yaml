@@ -4,10 +4,10 @@ metadata:
   name: kraftcontroller
   namespace: confluent
 spec:
-  configOverrides:
-    # server:
-    #   - confluent.balancer.enable=true
-    #   - inter.broker.listener.name=CONTROLLER
+  # configOverrides:
+  #   server:
+  #     - confluent.balancer.enable=true
+  #     - inter.broker.listener.name=CONTROLLER
   dataVolumeCapacity: 10G
   image:
     application: {{print "docker.io/confluentinc/cp-server:" .Values.cpServer.version}}
