@@ -9,7 +9,7 @@ spec:
   configOverrides:
     server:
       - confluent.balancer.enable=true
-      - inter.broker.listener.name=REPLICATION
+      - inter.broker.listener.name=INTERNAL
     log4j: 
       - log4j.rootLogger=ERROR, stdout  
   listeners:
