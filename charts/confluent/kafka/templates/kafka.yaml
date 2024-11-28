@@ -9,7 +9,7 @@ spec:
   configOverrides:
     server:
       - confluent.balancer.enable=true
-      - inter.broker.listener.name=SASL_PLAINTEXT
+      - inter.broker.listener.name=CONTROLLER
     log4j: 
       - log4j.rootLogger=ERROR, stdout  
   listeners:
