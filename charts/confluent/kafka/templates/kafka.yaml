@@ -9,6 +9,7 @@ spec:
   configOverrides:
     server:
       - confluent.balancer.enable=true
+      - inter.broker.listener.name=PLAINTEXT
   listeners:
     internal:
       authentication:
