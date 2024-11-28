@@ -32,6 +32,13 @@ spec:
           secretRef: credential
       tls:
         enabled: false
+    replication:
+      authentication:
+        jaasConfig:
+          secretRef: credential
+        type: plain
+      tls:
+        enabled: false        
   authorization:
     type: rbac
     superUsers:
