@@ -7,7 +7,7 @@ spec:
   configOverrides:
     server:
       - confluent.balancer.enable=true
-      - inter.broker.listener.name=CONTROLLER:PLAINTEXT
+      - inter.broker.listener.name=PLAINTEXT
   dataVolumeCapacity: 10G
   image:
     application: {{print "docker.io/confluentinc/cp-server:" .Values.cpServer.version}}
