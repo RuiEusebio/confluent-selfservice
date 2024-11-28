@@ -81,6 +81,16 @@ spec:
     kRaftController:
       clusterRef:
         name: kraftcontroller
+      controllerListener:
+        authentication:
+          jaasConfig:
+            secretRef: credential
+          type: plain
+        tls:
+          enabled: false          
+    # kRaftController:
+    #   clusterRef:
+    #     name: kraftcontroller
   dataVolumeCapacity: 10G
   image:
     application: {{print "docker.io/confluentinc/cp-server:" .Values.cpServer.version}}
