@@ -11,7 +11,8 @@ spec:
     #   - confluent.balancer.enable=true
     #   - inter.broker.listener.name=INTERNAL
     log4j: 
-      - log4j.rootLogger=ERROR, stdout  
+      - log4j.rootLogger=ERROR, stdout
+      - log4j.appender.stdout.layout=org.apache.log4j.EnhancedPatternLayout
   listeners:
     internal:
       authentication:
