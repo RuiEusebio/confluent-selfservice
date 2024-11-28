@@ -6,7 +6,7 @@ metadata:
 spec:
   configOverrides:
     server:
-      - confluent.balancer.enable=false
+      - confluent.balancer.enable=true
       - inter.broker.listener.name=CONTROLLER
   dataVolumeCapacity: 10G
   image:
